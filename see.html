@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAID 0 Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    RAID 0 Calculator
+    <nav>
+        <img class="logo" src="./logo.png" alt="">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Raid Calculators
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">RAID Levels</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" onclick="showRAID0()">RAID 0</a></li>
+                        <li><a href="1.html" onclick="showRAID1()">RAID 1/1E</a></li>
+                        <li><a href="5_5E.html" onclick="showRAID5()">RAID 5/5E</a></li>
+                        <li><a href="6.html" onclick="showRAID6()">RAID 6</a></li>
+                        <li><a href="50.html" onclick="showRAID50()">RAID 50</a></li>
+                        <li><a href="60.html" onclick="showRAID60()">RAID 60</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div id="calculator">
+    <h2>RAID 0 Calculator</h2>
+    <label for="numDrives">Number of Drives:</label>
+    <input type="number" id="numDrives" placeholder="Enter number of drives" required>
+
+    <label for="driveCapacity">Drive Capacity (GB):</label>
+    <input type="number" id="driveCapacity" placeholder="Enter drive capacity" required>
+
+    <label for="driveSpeed">Drive Speed (MB/s):</label>
+    <input type="number" id="driveSpeed" placeholder="Enter drive speed" required>
+
+    <button onclick="calculateRAID0()">Calculate RAID 0</button>
+
+    <div id="result"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+   
+    function calculateRAID0() {
+        const numDrives = parseInt(document.getElementById("numDrives").value);
+        const driveCapacity = parseInt(document.getElementById("driveCapacity").value);
+        const driveSpeed = parseInt(document.getElementById("driveSpeed").value);
+
+        const totalCapacity = numDrives * driveCapacity;
+        const totalSpeed = numDrives * driveSpeed;
+
+        const resultElement = document.getElementById("result");
+        resultElement.innerHTML = `<p>RAID 0 Total Capacity: ${totalCapacity} GB</p>
+                                   <p>RAID 0 Total Speed: ${totalSpeed} MB/s</p>`;
+    }
+</script>
+
+</body>
+</html>

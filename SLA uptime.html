@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLA Uptime Calculator</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+    .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            margin: 100px 600px;
+            /* align-items: center; */
+           max-width: 400px;
+            box-sizing: border-box;
+        }
+        
+        .heading {
+            text-align: center;
+            color: #333;
+            margin-top: 0px;
+            margin-bottom: 12px;
+        }
+        
+        .label {
+            /* display: block; */
+            text-align: center;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 15px;
+        }
+        
+        .input {
+            width: 100%;
+            padding: 10px;
+            color: black;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        
+         .button {
+            /* background-color: #4CAF50; */
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        
+        /* .button:hover {
+            background-color: #45a049;
+        }  */
+        
+        .result {
+            margin-top: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .dropdown-submenu {
+            position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        } 
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 16px;
+    text-align: left;
+    font-size: 16px;
+  }
+  input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  #result {
+    font-size: 20px;
+    margin-top: 30px;
+    /* color: #4CAF50; */
+    font-weight: bold;
+    animation: fadeIn 0.8s ease;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Media Queries */
+  @media only screen and (max-width: 600px) {
+    .container {
+      padding: 20px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    label {
+      font-size: 14px;
+    }
+    input[type="number"] {
+      font-size: 12px;
+    }
+    button {
+      font-size: 14px;
+      padding: 10px 16px;
+    }
+    #result {
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Calculators</h1>
+    <nav>
+        <img class="logo" src="./logo.png" alt="">
+        
+        <div class="dropdown">
+            <button class="dropbtn" type="button" data-toggle="dropdown">Calculators
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+                <a class="test" tabindex="-1" href="#"> Raid Calculators<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="index.html">Raid 0</a></li>
+                    <li><a tabindex="-1" href="1.html">Raid 1/1E</a></li>
+                    <li><a tabindex="-1" href="5_5E.html">Raid 5/5E/5EE</a></li>
+                    <li><a tabindex="-1" href="6.html">Raid 6</a></li>
+                    <li><a tabindex="-1" href="50.html">Raid 50</a></li>
+                    <li><a tabindex="-1" href="60.html">Raid 60</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown-submenu">    
+                <a class="test" tabindex="-1" href="#"> Latency Calculators<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                   <li><a tabindex="-1" href="Latency.html">Latency Checker</a></li>
+                   <li><a tabindex="-1" href="IP blacklist.html">IP Blacklist Checker</a></li>
+                   <li><a tabindex="-1" href="Ip whois.html">IP Whois</a></li>
+                   <li><a tabindex="-1" href="power consumption.html">Power Consumption</a></li>
+                   <li><a tabindex="-1" href="SLA uptime.html">SLA Uptime</a></li>
+                   <li><a tabindex="-1" href="port checker.html">Port Checker Calculator</a></li>
+                   
+                </ul>
+            </li>
+            </ul>
+        </div>
+        <!-- Add more RAID types as needed -->
+    </nav>
+</header>
+<div class="container">
+  <h2 class="heading">SLA Uptime Calculator</h2>
+  <form id="uptimeForm">
+    <label for="totalTime" class="label">Total Available Time (hours):</label>
+    <input type="number" id="totalTime" class="input" min="1" required>
+    <label for="downtime" class="label">Downtime (hours):</label>
+    <input class="input" type="number" id="downtime" min="0" required>
+    <button class="button" type="submit">Calculate</button>
+  </form>
+  <p id="result" class="result"></p>
+</div>
+
+<script>
+   $(document).ready(function(){
+      $('.dropdown-submenu a.test').on("click", function(e){
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+document.getElementById('uptimeForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  calculateUptime();
+});
+
+function calculateUptime() {
+  var totalTime = document.getElementById("totalTime").value;
+  var downtime = document.getElementById("downtime").value;
+
+  if (totalTime === "" || downtime === "") {
+    alert("Please enter values for both fields.");
+    return;
+  }
+
+  var uptimePercentage = ((totalTime - downtime) / totalTime) * 100;
+  document.getElementById("result").innerHTML = "SLA Uptime: " + uptimePercentage.toFixed(2) + "%";
+}
+</script>
+</body>
+</html>

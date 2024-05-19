@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Blacklist Checker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>       
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 90%;
+        margin: 100px 600px;
+        /* align-items: center; */
+        max-width: 400px;
+        box-sizing: border-box;
+    }
+    
+    .heading {
+        text-align: center;
+        color: #333;
+    }
+    
+    .label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+    }
+    
+    .input {
+        width: 100%;
+        padding: 10px;
+        color: black;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+    }
+    
+     .button {
+        /* background-color: #4CAF50; */
+        color: white;
+        padding: 12px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    
+    /* .button:hover {
+        background-color: #45a049;
+    }  */
+    
+    .result {
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
+    .dropdown-submenu {
+        position: relative;
+    }
+    
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+    }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Calculators</h1>
+        <nav>
+            <img class="logo" src="./logo.png" alt="">
+            
+            <div class="dropdown">
+                <button class="dropbtn" type="button" data-toggle="dropdown">Calculators
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#"> Raid Calculators<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="index.html">Raid 0</a></li>
+                        <li><a tabindex="-1" href="1.html">Raid 1/1E</a></li>
+                        <li><a tabindex="-1" href="5_5E.html">Raid 5/5E/5EE</a></li>
+                        <li><a tabindex="-1" href="6.html">Raid 6</a></li>
+                        <li><a tabindex="-1" href="50.html">Raid 50</a></li>
+                        <li><a tabindex="-1" href="60.html">Raid 60</a></li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown-submenu">    
+                    <a class="test" tabindex="-1" href="#"> Latency Calculators<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a tabindex="-1" href="Latency.html">Latency Checker</a></li>
+                       <li><a tabindex="-1" href="IP blacklist.html">IP Blacklist Checker</a></li>
+                       <li><a tabindex="-1" href="Ip whois.html">IP Whois</a></li>
+                       <li><a tabindex="-1" href="power consumption.html">Power Consumption</a></li>
+                       <li><a tabindex="-1" href="SLA uptime.html">SLA Uptime</a></li>
+                       <li><a tabindex="-1" href="port checker.html">Port Checker Calculator</a></li>
+                       
+                    </ul>
+                </li>
+                </ul>
+            </div>
+            <!-- Add more RAID types as needed -->
+        </nav>
+    </header>
+<div class="container">
+    <h2 class="heading">IP Blacklist Checker</h2>
+    <label for="ipAddress" class="label">IP Address:</label>
+    <input type="text" id="ipAddress" class="input" placeholder="Enter IP address" required>
+    <button class="button" onclick="checkBlacklist()">Check Blacklist</button>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    $(document).ready(function(){
+      $('.dropdown-submenu a.test').on("click", function(e){
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+    
+    function checkBlacklist() {
+    const ipAddress = document.getElementById("ipAddress").value;
+    const apiUrl = `https://api.ipify.org?format=json&blacklist=${ipAddress}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const resultElement = document.getElementById("result");
+            if (data.blacklisted) {
+                resultElement.innerHTML = `IP Address ${ipAddress} is blacklisted.`;
+            } else {
+                resultElement.innerHTML = `IP Address ${ipAddress} is not blacklisted.`;
+            }
+        })
+        .catch(error => {
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = `Error: ${error.message}`;
+        }); 
+    }
+
+</script>
+
+</body>
+</html>

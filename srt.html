@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nested Menu</title>
+<link src="">
+<style>
+  ul {
+    list-style-type: none;
+  }
+  ul ul {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<ul id="main-menu">
+  <li onclick="toggleSubMenu('submenu1')">Main Menu
+    <ul id="submenu1">
+      <li>Submenu 1</li>
+      <li>Submenu 2</li>
+      <li>Submenu 3</li>
+    </ul>
+  </li>
+  <li onclick="toggleSubMenu('submenu2')">Main Menu 2
+    <ul id="submenu2">
+      <li>Submenu 1</li>
+      <li>Submenu 2</li>
+    </ul>
+  </li>
+</ul>
+
+<script>
+function toggleSubMenu(submenuId) {
+  var submenu = document.getElementById(submenuId);
+  if (submenu.style.display === "none") {
+    submenu.style.display = "block";
+  } else {
+    submenu.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

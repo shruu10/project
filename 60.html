@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .dropdown-submenu {
+          position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-menu {
+          top: 0;
+          left: 100%;
+          margin-top: -1px;
+        }
+  </style>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Calculators</h1>
+        <nav>
+            <img class="logo" src="./logo.png" alt="">
+            
+            <div class="dropdown">
+                <button class="dropbtn" type="button" data-toggle="dropdown">Calculators
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#"> Raid Calculators<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="index.html">Raid 0</a></li>
+                        <li><a tabindex="-1" href="1.html">Raid 1/1E</a></li>
+                        <li><a tabindex="-1" href="5_5E.html">Raid 5/5E/5EE</a></li>
+                        <li><a tabindex="-1" href="6.html">Raid 6</a></li>
+                        <li><a tabindex="-1" href="50.html">Raid 50</a></li>
+                        <li><a tabindex="-1" href="60.html">Raid 60</a></li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown-submenu">    
+                    <a class="test" tabindex="-1" href="#"> Latency Calculators<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="IP blacklist.html">IP Blacklist Checker</a></li>
+                        <li><a tabindex="-1" href="Ip whois.html">IP Whois</a></li>
+                        <li><a tabindex="-1" href="Latency.html">Latency Checker</a></li>
+                       <li><a tabindex="-1" href="power consumption.html">Power Consumption</a></li>
+                       <li><a tabindex="-1" href="SLA uptime.html">SLA Uptime</a></li>
+                       <li><a tabindex="-1" href="port checker.html">Port Checker Calculator</a></li>
+                       
+                    </ul>
+                </li>
+                </ul>
+            </div>
+            <!-- Add more RAID types as needed -->
+        </nav>
+    </header>
+<div id="calculator">
+    <h2>RAID 60 Calculator</h2>
+
+    <label for="totalDisks">Number of Disks:</label>
+    <input type="number" id="totalDisks" min="2" value=""><br>
+
+    <label for="usableSpace">Disk Size (GB):</label>
+    <input type="number" id="usableSpace" min="1" value=""><br>
+
+    <button onclick="calculateRaid60Space()">Calculate </button>
+<p>Total Capacity: <span id="result">0</span> GB</p>
+   
+</div>
+
+<script>
+function calculateRaid60Space() {
+    var totalDisks = parseInt(document.getElementById('totalDisks').value);
+    var usableSpace = parseInt(document.getElementById('usableSpace').value);
+
+    if (isNaN(totalDisks) || isNaN(usableSpace) || totalDisks <= 0 || usableSpace <= 0) {
+        alert("Please enter valid numbers for total disks and usable space.");
+        return;
+    }
+
+    var totalSpace = usableSpace * Math.abs(totalDisks - 4); // RAID 60 calculation
+
+    document.getElementById('result').innerHTML = "Total Usable Space: " + totalSpace ;
+}
+</script>
+
+<script>
+    $(document).ready(function(){
+      $('.dropdown-submenu a.test').on("click", function(e){
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+</script>
+
+</body>
+</html>

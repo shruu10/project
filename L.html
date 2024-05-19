@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAID 0 Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .dropdown-submenu {
+          position: relative;
+        }
+        
+        .dropdown-submenu .dropdown-menu {
+          top: 0;
+          left: 100%;
+          margin-top: -1px;
+        }
+        </style>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h2>Raid Calculator</h2>
+    <nav>
+        <img class="logo" src="./logo.png" alt="">
+        <!-- <div class="dropdown">
+            <button class="dropbtn">Raid Calculators</button>
+            <div class="dropdown-content">
+             <a href="0.html" onclick="showRAID0()">RAID 0</a>
+             <a href="1.html" onclick="showRAID0()">RAID 1/1E</a>
+             <a href="5_5E.html" onclick="showRAID0()">RAID 5/5E</a>
+             <a href="6.html" onclick="showRAID0()">RAID 6</a>
+             <a href="50.html" onclick="showRAID0()">RAID 50</a>
+             <a href="60.html " onclick="showRAID0()">RAID 60</a>
+              
+            </div>
+          </div> -->
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Tutorials
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a tabindex="-1" href="#">HTML</a></li>
+              <li><a tabindex="-1" href="#">CSS</a></li>
+              <li class="dropdown-submenu">
+                <a class="test" tabindex="-1" href="#">New dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                  <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                  <li class="dropdown-submenu">
+                    <a class="test" href="#">Another dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">3rd level dropdown</a></li>
+                      <li><a href="#">3rd level dropdown</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        <!-- Add more RAID types as needed -->
+    </nav>
+</header>
+
+<script>
+    $(document).ready(function(){
+      $('.dropdown-submenu a.test').on("click", function(e){
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+</script>
+   
+    
+
+</body>
+</html>
